@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/header :: head"></head>
+
+<body>
+	<div th:insert="fragmentos/header :: menu"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 bg-warning">
+				<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
+			</div>
+			<div class="col-md-9">
+				<h2>Lista de Usuarios</h2>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
+							<th>DNI</th>
+							<th>Correo</th>
+							<th>Genero</th>
+							<th>Dirección</th>
+							<th>Fecha de Nacimiento</th>
+							<th>Rol</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usuario : ${usuarios}">
+							<td th:text="${usuario.id}"></td>
+							<td th:text="${usuario.nombres}"></td>
+							<td th:text="${usuario.apellidos}"></td>
+							<td th:text="${usuario.dni}"></td>
+							<td th:text="${usuario.correo}"></td>
+							<td th:text="${usuario.genero}"></td>
+							<td th:text="${usuario.direccion}"></td>
+							<td th:text="${usuario.fecha_nac}"></td>
+							<td th:text="${usuario.rol}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/header :: head"></head>
+
+<body>
+	<div th:insert="fragmentos/header :: menu"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 bg-warning">
+				<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
+			</div>
+			<div class="col-md-9">
+				<h2 class="text-center mb-4">Formulario de Registro de Curso</h2>
+				<form th:action="@{/guardarCurso}" method="post" th:object="${curso}">
+					<input type="hidden" th:field="*{id}" />
+
+					<div class="mb-3">
+						<label for="nombre" class="form-label">Nombre del Curso:</label>
+						<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
+						<p th:errors="*{nombre}" class="text-danger">Error en el campo Nombre del Curso</p>
+					</div>
+
+					<div class="mb-3">
+						<label for="descripcion" class="form-label">Descripción:</label>
+						<textarea class="form-control" id="descripcion" th:field="*{descripcion}"></textarea>
+						<p th:errors="*{descripcion}" class="text-danger">Error en el campo Descripción</p>
+					</div>
+
+					<div class="mb-3">
+						<label for="fec_ini" class="form-label">Fecha de Inicio:</label>
+						<input type="date" class="form-control" id="fec_ini" th:field="*{fec_ini}" />
+						<p th:errors="*{fec_ini}" class="text-danger">Error en el campo Fecha de Inicio</p>
+					</div>
+
+					<div class="mb-3">
+						<label for="fec_fin" class="form-label">Fecha de Fin:</label>
+						<input type="date" class="form-control" id="fec_fin" th:field="*{fec_fin}" />
+						<p th:errors="*{fec_fin}" class="text-danger">Error en el campo Fecha de Fin</p>
+					</div>
+
+
+					<div class="mb-3">
+						<label for="costo" class="form-label">Costo:</label>
+						<input type="number" class="form-control" id="costo" th:field="*{costo}" />
+						<p th:errors="*{costo}" class="text-danger">Error en el campo Costo</p>
+					</div>
+
+					<div class="mb-3">
+						<label for="vacantes" class="form-label">Vacantes:</label>
+						<input type="number" class="form-control" id="vacantes" th:field="*{vacantes}" />
+						<p th:errors="*{vacantes}" class="text-danger">Error en el campo Vacantes</p>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Guardar Curso</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragmentos/header :: head"></head>
+
+<body>
+	<div th:insert="fragmentos/header :: menu"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 bg-warning">
+				<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
+			</div>
+			<div class="col-md-9">
+				<h2>Lista de Cursos</h2>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Descripcion</th>
+							<th>Costo</th>
+							<th>Fec_ini</th>
+							<th>Fec_fin</th>
+							<th>Vacantes</th>
+							<th>Profesor asignado</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="curso : ${cursos}">
+							<td th:text="${curso.id}"></td>
+							<td th:text="${curso.nombre}"></td>
+							<td th:text="${curso.descripcion}"></td>
+							<td th:text="${curso.costo}"></td>
+							<td th:text="${curso.fec_ini}"></td>
+							<td th:text="${curso.fec_fin}"></td>
+							<td th:text="${curso.vacantes}"></td>
+							<td th:text="${curso.profesor.nombres}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

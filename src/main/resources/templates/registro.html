@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+	<title>Registro</title>
+	<meta charset="UTF-8">
+	<link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}" />
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div th:if="${param.errorCorreoDuplicado}" class="alert alert-danger">
+					El correo ya está registrado. Por favor, utiliza otro correo.
+				</div>
+
+				<h2 class="text-center mb-4">Registro de Usuario</h2>
+				<form th:action="@{/registro}" th:object="${usuario}" method="post">
+					<div class="mb-3">
+						<label for="nombres" class="form-label">Nombres:</label>
+						<input type="text" class="form-control" id="nombres" th:field="*{nombres}" />
+						<p th:errors="*{nombres}" class="text-danger">Error en el campo Nombres</p>
+					</div>
+					<div class="mb-3">
+						<label for="apellidos" class="form-label">Apellidos:</label>
+						<input type="text" class="form-control" id="apellidos" th:field="*{apellidos}" />
+						<p th:errors="*{apellidos}" class="text-danger">Error en el campo Apellidos</p>
+					</div>
+					<div class="mb-3">
+						<label for="dni" class="form-label">DNI:</label>
+						<input type="text" class="form-control" id="dni" th:field="*{dni}" />
+						<p th:errors="*{dni}" class="text-danger">Error en el campo DNI</p>
+					</div>
+					<div class="mb-3">
+						<label for="correo" class="form-label">Correo:</label>
+						<input type="email" class="form-control" id="correo" th:field="*{correo}" />
+						<p th:errors="*{correo}" class="text-danger">Error en el campo Correo</p>
+					</div>
+					<div class="mb-3">
+						<label for="contrasenia" class="form-label">Contraseña:</label>
+						<input type="password" class="form-control" id="contrasenia" th:field="*{contrasenia}" />
+						<p th:errors="*{contrasenia}" class="text-danger">Error en el campo Contraseña</p>
+					</div>
+					<div class="mb-3">
+						<label for="genero" class="form-label">Género:</label>
+						<select class="form-select" id="genero" th:field="*{genero}" >
+							<option value="">Seleccionar</option>
+							<option value="MASCULINO">Masculino</option>
+							<option value="FEMENINO">Femenino</option>
+						</select>
+						<p th:errors="*{genero}" class="text-danger">Error en el campo Género</p>
+					</div>
+					<div class="mb-3">
+						<label for="direccion" class="form-label">Dirección:</label>
+						<input type="text" class="form-control" id="direccion" th:field="*{direccion}" />
+						<p th:errors="*{direccion}" class="text-danger">Error en el campo Dirección</p>
+					</div>
+					<div class="mb-3">
+						<label for="fecha_nac" class="form-label">Fecha de Nacimiento:</label>
+						<input type="date" class="form-control" id="fecha_nac" th:field="*{fecha_nac}" />
+						<p th:errors="*{fecha_nac}" class="text-danger">Error en el campo Fecha de Nacimiento</p>
+					</div>
+					<div class="mb-3">
+						<label for="rol" class="form-label">Rol:</label>
+						<select class="form-select" id="rol" th:field="*{rol}" >
+							<option value="">Seleccionar</option>
+							<option value="ALUMNO">Alumno</option>
+							<option value="PROFESOR">Profesor</option>
+						</select>
+						<p th:errors="*{rol}" class="text-danger">Error en el campo Rol</p>
+					</div>
+					<a th:href="@{/login}" class="btn btn-link">Cancelar</a>
+					<button type="submit" class="btn btn-primary">Registrarse</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
