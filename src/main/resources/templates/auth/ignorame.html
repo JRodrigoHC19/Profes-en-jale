@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragmentos/header :: head">
-	<title>Matricula-Curso-Usuario</title>
+	<title>Lista de Alumnos</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    <!-- HEADER UNICO -->
 	<div th:insert="fragmentos/header :: menu"></div>
 
-	
   	<!-- CONTENIDO DE PAGINA WEB -->
 	<main class="container flex-grow-1 pt-3">
 		<div class="mx-xl-5">
@@ -18,33 +18,11 @@
 			<!-- T O D O   L O   Q U E   E S T A   D E N T R O   D E   A Q U I,  P U E D E   S E R   C A M B I A D O -->
 			<div class="container-fluid px-0 mb-3 ">
 				<div class="pt-4  display-5 fw-bolder">
-					Detalle de  la Matrícula
+					Lista de Usuarios Registrados
 				</div>
 
 				<div class="my-3 rounded-4 border" style="height: 300px;">
-					<h2>Detalle de Matrícula</h2>
-					<p>Código: <span th:text="${matricula.codigo}"></span></p>
-					<p>Costo Total: <span th:text="${matricula.costo_total}"></span></p>
-					<p>Fecha de Matrícula: <span th:text="${#dates.format(matricula.fec_matricula, 'dd-MM-yyyy HH:mm')}"></span></p>
-					<h3>Matrículas-Cursos Vinculadas</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Curso</th>
-								<th>Costo</th>
-								<!-- Otros encabezados de columnas según tus necesidades -->
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="matriculaCurso : ${matriculaCursos}">
-								<td th:text="${matriculaCurso.id}"></td>
-								<td th:text="${matriculaCurso.curso.nombre}"></td>
-								<td th:text="${matriculaCurso.costo}"></td>
-								<!-- Otros datos de columnas según tus necesidades -->
-							</tr>
-						</tbody>
-					</table>
+					XD
 				</div>
 
 				<div class="my-3 rounded-4 border" style="height: 300px;">
