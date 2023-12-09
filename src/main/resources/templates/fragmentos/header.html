@@ -46,9 +46,13 @@
 			.custom-size-0 {
 			font-size: 400%;
 			}
-		
+			
 			.custom-size-1 {
-			font-size: 2rem;
+				font-size: 2rem;
+			}
+			
+			.custom-size-2 {
+				font-size: 150%;
 			}
 		}
 	</style>
@@ -84,7 +88,7 @@
 					<div class="dropdown text-end">
 					<a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
 						aria-expanded="false">
-						<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+						<img th:src="@{/img/perfil.gif}" alt="mdo" width="32" height="32" class="rounded-circle">
 					</a>
 					<ul class="dropdown-menu text-small">
 						<li><a class="dropdown-item" th:href="@{/detallesUsuario}">Details</a></li>
@@ -127,7 +131,7 @@
 			setTimeout(function() {
 				const loadingOverlay = document.querySelector('.loading-overlay');
 				if (loadingOverlay) { loadingOverlay.style.display = 'none'; }
-			}, 500);
+			}, 100);
 			};
 	
 			// NO LO TOQUES AUN

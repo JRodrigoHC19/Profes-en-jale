@@ -12,7 +12,7 @@
 			
 			<div class="row  pt-3 mt-3 mb-2">
 				<div class="col-auto  ps-5">
-					<img src="https://github.com/mdo.png" width="150" height="150" class="rounded-circle">
+					<img th:src="@{/img/perfil.gif}" width="150" height="150" class="rounded-circle">
 				</div>
 				<div class="col  ps-xs-4 ps-md-5  my-auto  h2">
 					Hi, usuario <strong>Jaime!</strong>
@@ -23,10 +23,11 @@
 			</div>
 
 			<div class="container-fluid"> <!-- border rounded bg-light -->
-				<div class="mx-5">
 				<nav class="navbar navbar-expand-lg bg-body-tertiary">
 					<div class="container-fluid">
-						<a class="navbar-brand" th:href="@{/}">DashBoard</a>
+						<a class="navbar-brand  icon-link icon-link-hover custom-size-2" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/}">
+							<i class="bi bi-house-door-fill mb-2"></i> DashBoard
+						</a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 						</button>
@@ -34,12 +35,15 @@
 
 							<ul class="navbar-nav nav-underline">
 								<li class="nav-item dropdown ms-lg-5 me-lg-5">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Alumno
+									<a class="nav-link dropdown-toggle  icon-link icon-link-hover custom-size-2" href="#" role="button" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-people mb-2"></i> Usuarios
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark">
-										<li><a class="dropdown-item" th:href="@{/listaUsuarios}">Usuarios registrados</a></li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaUsuarios}">
+												<i class="bi bi-card-checklist mb-2" aria-hidden="true"></i> Registros
+										  	</a>
+										</li>
 										<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 										<li>
 										<hr class="dropdown-divider">
@@ -49,13 +53,20 @@
 								</li>
 
 								<li class="nav-item dropdown me-lg-5">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Cursos
+									<a class="nav-link dropdown-toggle  icon-link icon-link-hover custom-size-2" href="#" role="button" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-hdd-stack mb-2"></i> Cursos
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark">
-										<li><a class="dropdown-item" th:href="@{/listaCursosUsuario}">Mis cursos</a></li>
-										<li><a class="dropdown-item" th:href="@{/listaCursos}">Cursos registrados</a></li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaCursos}">
+												<i class="bi bi-card-checklist mb-2" aria-hidden="true"></i> Registros
+										  	</a>
+										</li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaCursosUsuario}">
+												<i class="bi bi-journal-bookmark-fill mb-2"></i> Mis cursos
+										  	</a>
+										</li>
 										<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 										<li>
 										<hr class="dropdown-divider">
@@ -65,14 +76,25 @@
 								</li>
 
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Matriculas
+									<a class="nav-link dropdown-toggle  icon-link icon-link-hover custom-size-2" href="#" role="button" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-cup-hot mb-2"></i> Matriculas
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark">
-										<li><a class="dropdown-item" th:href="@{/listaMatriculasUsuario}">Mis matrículas</a></li>
-										<li><a class="dropdown-item" th:href="@{/listaMatriculas}">Matriculas registradas</a></li>
-										<li><a class="dropdown-item" th:href="@{/seleccionCursos}">Matricularse</a></li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaMatriculas}">
+												<i class="bi bi-card-checklist mb-2" aria-hidden="true"></i> Registros
+										  	</a>
+										</li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaMatriculasUsuario}">
+												<i class="bi bi-journal-bookmark-fill mb-2"></i> Mis matrículas
+										  	</a>
+										</li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/seleccionCursos}">
+												<i class="bi bi-ui-checks mb-2"></i> Crear Matrícula
+										  	</a>
+										</li>
 										<li>
 										<hr class="dropdown-divider">
 										</li>
@@ -83,8 +105,7 @@
 
 						</div>
 					</div>
-					</nav>
-				</div>
+				</nav>
 			</div>
 			
 		</div>
@@ -94,23 +115,27 @@
 		<div class="container-fluid  mb-3 rounded-4  bg-light">
 
 			<div class="container-fluid"> <!-- border rounded bg-light -->
-				<div class="mx-5">
 				<nav class="navbar navbar-expand-lg bg-body-tertiary">
 					<div class="container-fluid">
-						<a class="navbar-brand" th:href="@{/}">DashBoard</a>
+						<a class="navbar-brand  icon-link icon-link-hover custom-size-2" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/}">
+							<i class="bi bi-house-door-fill mb-2"></i> DashBoard
+						</a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 						</button>
-						<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
 
 							<ul class="navbar-nav nav-underline">
 								<li class="nav-item dropdown ms-lg-5 me-lg-5">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Alumno
+									<a class="nav-link dropdown-toggle  icon-link icon-link-hover custom-size-2" href="#" role="button" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-people mb-2"></i> Usuarios
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark">
-										<li><a class="dropdown-item" th:href="@{/listaUsuarios}">Usuarios registrados</a></li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaUsuarios}">
+												<i class="bi bi-card-checklist mb-2" aria-hidden="true"></i> Registros
+										  	</a>
+										</li>
 										<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 										<li>
 										<hr class="dropdown-divider">
@@ -120,13 +145,20 @@
 								</li>
 
 								<li class="nav-item dropdown me-lg-5">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Cursos
+									<a class="nav-link dropdown-toggle  icon-link icon-link-hover custom-size-2" href="#" role="button" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-hdd-stack mb-2"></i> Cursos
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark">
-										<li><a class="dropdown-item" th:href="@{/listaCursosUsuario}">Mis cursos</a></li>
-										<li><a class="dropdown-item" th:href="@{/listaCursos}">Cursos registrados</a></li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaCursos}">
+												<i class="bi bi-card-checklist mb-2" aria-hidden="true"></i> Registros
+										  	</a>
+										</li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaCursosUsuario}">
+												<i class="bi bi-journal-bookmark-fill mb-2"></i> Mis cursos
+										  	</a>
+										</li>
 										<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 										<li>
 										<hr class="dropdown-divider">
@@ -136,14 +168,25 @@
 								</li>
 
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									Matriculas
+									<a class="nav-link dropdown-toggle  icon-link icon-link-hover custom-size-2" href="#" role="button" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-cup-hot mb-2"></i> Matriculas
 									</a>
 									<ul class="dropdown-menu dropdown-menu-dark">
-										<li><a class="dropdown-item" th:href="@{/listaMatriculasUsuario}">Mis matrículas</a></li>
-										<li><a class="dropdown-item" th:href="@{/listaMatriculas}">Matriculas registradas</a></li>
-										<li><a class="dropdown-item" th:href="@{/seleccionCursos}">Matricularse</a></li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaMatriculas}">
+												<i class="bi bi-card-checklist mb-2" aria-hidden="true"></i> Registros
+										  	</a>
+										</li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/listaMatriculasUsuario}">
+												<i class="bi bi-journal-bookmark-fill mb-2"></i> Mis matrículas
+										  	</a>
+										</li>
+										<li>
+											<a class="dropdown-item  icon-link icon-link-hover" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" th:href="@{/seleccionCursos}">
+												<i class="bi bi-ui-checks mb-2"></i> Crear Matrícula
+										  	</a>
+										</li>
 										<li>
 										<hr class="dropdown-divider">
 										</li>
@@ -151,6 +194,8 @@
 									</ul>
 								</li>
 							</ul>
+							<img th:src="@{/img/duck.gif}" height="60px" />
+
 
 						</div>
 					</div>
