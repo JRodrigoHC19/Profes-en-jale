@@ -26,7 +26,7 @@
 				<div class="mx-5">
 				<nav class="navbar navbar-expand-lg bg-body-tertiary">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="#">DashBoard</a>
+						<a class="navbar-brand" th:href="@{/}">DashBoard</a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 						</button>
@@ -36,17 +36,6 @@
 
 
 
-							<h2>Lado Izquierdo</h2>
-							<div class="list-group">
-								<a class="list-group-item" th:href="@{/}">Inicio</a>
-								<a class="list-group-item" th:href="@{/listaUsuarios}">Usuarios registrados</a>
-								<a class="list-group-item" th:href="@{/listaCursos}">Cursos registrados</a>
-								<a class="list-group-item" th:href="@{/listaMatriculas}">Matriculas registradas</a>
-								<a class="list-group-item" th:href="@{/seleccionCursos}">Matricularse</a>
-								<a class="list-group-item" th:href="@{/listaCursosUsuario}">Mis cursos</a>
-								<a class="list-group-item" th:href="@{/listaMatriculasUsuario}">Mis matrículas</a>
-							</div>
-							
 
 
 							<li class="nav-item dropdown ms-lg-5 me-lg-5">
@@ -56,7 +45,7 @@
 								</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
 									<li><a class="dropdown-item" href="/BootsTrap/lateral.html">Seccio 1</a></li>
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
+									<li><a class="dropdown-item" th:href="@{/listaUsuarios}">Usuarios registrados</a></li>
 									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 									<li>
 									<hr class="dropdown-divider">
@@ -64,32 +53,32 @@
 									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 								</ul>
 							</li>
-			
+
 							<li class="nav-item dropdown me-lg-5">
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 								aria-expanded="false">
 								Cursos
 								</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
+									<li><a class="dropdown-item" th:href="@{/listaCursosUsuario}">Mis cursos</a></li>
+									<li><a class="dropdown-item" th:href="@{/listaCursos}">Cursos registrados</a></li>
 									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
 									<li>
 									<hr class="dropdown-divider">
 									</li>
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
+									<li><a class="dropdown-item" href="#">Seccio 2</a></li>
 								</ul>
 							</li>
-			
+
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 								aria-expanded="false">
 								Matriculas
 								</a>
 								<ul class="dropdown-menu dropdown-menu-dark">
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
-									<li><a class="dropdown-item" href="#">Seccio 1</a></li>
+									<li><a class="dropdown-item" th:href="@{/listaMatriculasUsuario}">Mis matrículas</a></li>
+									<li><a class="dropdown-item" th:href="@{/listaMatriculas}">Matriculas registradas</a></li>
+									<li><a class="dropdown-item" th:href="@{/seleccionCursos}">Matricularse</a></li>
 									<li>
 									<hr class="dropdown-divider">
 									</li>

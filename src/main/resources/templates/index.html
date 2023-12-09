@@ -8,10 +8,10 @@
 <body class="d-flex flex-column min-vh-100">
 	<div th:insert="fragmentos/header :: menu"></div>
 	<main class="container flex-grow-1 pt-3" style="height: 100%;">
+		<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 bg-warning">
-					<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
 				</div>
 				<div class="col-md-9">
 					<div class="flex-grow-1 d-flex align-items-center justify-content-center">
