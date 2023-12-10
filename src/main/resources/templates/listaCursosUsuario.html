@@ -32,16 +32,16 @@
                             <div class="p-3  border rounded-4  bg-light">
                                 <div class="d-flex align-items-center">
                                     <div class="icon-xl p-3 rounded-3  bg-secondary"><i class="bi bi-backpack2 px-3  custom-size-0"></i></div>
-                                    <div class="ms-3"><h2 th:text="${2}" /><span class="text-secondary  custom-size-1">Alumnos</span></div>
+                                    <div class="ms-3"><h2 th:text="${#lists.size(misCursos)}" /><span class="text-secondary  custom-size-1">Cursos Creados</span></div>
                                 </div>
                             </div>
                         </div>
-            
+
                         <div>
                             <div class="my-5 p-3  border rounded-4 bg-light">
                                 <div class="d-flex align-items-center">
-                                    <div class="icon-xl p-3 rounded-3  bg-warning"><i class="bi bi-person-exclamation px-3 custom-size-0"></i></div>
-                                    <div class="ms-3"><h2 th:text="${2}" /><span class="text-secondary  custom-size-1">Profesores</span></div>
+                                    <div class="icon-xl p-3 rounded-3  bg-info"><i class="bi bi-boxes px-3 custom-size-0"></i></div>
+                                    <div class="ms-3"><h2 th:text="${CursosCompletos}" /><span class="text-secondary  custom-size-1">Cursos Llenos</span></div>
                                 </div>
                             </div>
                         </div>
@@ -50,8 +50,8 @@
                             <div class="mb-sm-5 p-3  border rounded-4 bg-light">
                                 <div class="d-flex align-items-center">
                                     <div class="icon-xl p-3 rounded-3  bg-warning"><i class="bi bi-person-exclamation px-3 custom-size-0"></i></div>
-                                    <div class="ms-3"><h2 th:text="${2}" /><span class="text-secondary  custom-size-1">Profesores</span></div>
-                                </div>
+                                    <div class="ms-3"><h2 id="TotalVacantes" th:text="${TotalVacantes}" /><span class="text-secondary  custom-size-1">Vacantes Restantes</span></div>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
 							<div class="card-body row py-2 px-0">
 								<div class="col-sm-12 col-md-6 col-lg-4">
                                     <div class="container-fluid">
-                                        <span id="chart-container">FusionCharts XT will load here!</span>
+                                        <div id="chart-container">FusionCharts XT will load here!</div>
                                     </div>
 								</div>	
 							</div>
@@ -141,8 +141,8 @@
 											</div>
 										</div>
 										<div class="card-body">
-											<p class="card-text"><strong>Curso: </strong><span th:text="${curso.nombre}" /></p>
-											<p class="card-text"><strong>Vacantes: </strong><span th:text="${curso.vacantes}+' restantes'" /></p>
+											<p class="card-text"><strong>Curso: </strong><span class="tipo-curso" th:text="${curso.nombre}" /></p>
+											<p class="card-text"><strong>Vacantes: </strong><span class="tipo-vacante" th:text="${curso.vacantes}" />&nbsp;restantes</p>
 											<div class="accordion accordion-flush" id="accordionFlushExample">
 												<div class="accordion-item">
 													<h2 class="accordion-header">
@@ -180,53 +180,42 @@
 	<div th:insert="fragmentos/header :: scripts"></div>
 
     <script>
+        list_vacantes = document.getElementsByClassName('tipo-vacante');
+        list_cursos = document.getElementsByClassName('tipo-curso');
+        TotalVacantes = document.getElementById('TotalVacantes').textContent;
+
+        let new_data = [];
+
+        for (let i = 0; i < list_vacantes.length; i++) {
+            new_data.push({'label':list_cursos[i].textContent,'value':list_vacantes[i].textContent});
+        }
         FusionCharts.ready(function() {
         var revenueChart = new FusionCharts({
             type: 'doughnut2d',
             renderAt: 'chart-container',
-            width: '600',
+            width: '565',
             height: '512.4',
             dataFormat: 'json',
             dataSource: {
             "chart": {
-                "caption": "Split of Revenue by Product Categories",
-                "subCaption": "Last year",
-                "numberPrefix": "$",
+                "caption": "Disponibilidad de las Vacantes Según el Curso",
+                "subCaption": "Just Now",
+                "numberPrefix": "",
                 "bgColor": "#ffffff",
                 "startingAngle": "310",
                 "showLegend": "1",
-                "defaultCenterLabel": "Total revenue: $64.08K",
-                "centerLabel": "Revenue from $label: $value",
+                "defaultCenterLabel": `Vacantes Restantes: ${TotalVacantes} vacantes`,
+                "centerLabel": "$label: $value",
                 "centerLabelBold": "1",
                 "showTooltip": "0",
                 "labelFontColor": "#ffffff",
                 "decimals": "0",
                 "theme": "fusion",
-                "valuePosition": "inside",
+                // "valuePosition": "inside",
                 "minAngleForValue": "0",
                 "enablesmartLabel": "0"
             },
-            "data": [{
-                "label": "Food",
-                "value": "28504"
-                },
-                {
-                "label": "Macacos",
-                "value": "2304"
-                },
-                {
-                "label": "Apparels",
-                "value": "14633"
-                },
-                {
-                "label": "Electronics",
-                "value": "10507"
-                },
-                {
-                "label": "Household",
-                "value": "4910"
-                }
-            ]
+            "data": new_data
             }
         }).render();
         });

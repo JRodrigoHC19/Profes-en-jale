@@ -146,10 +146,25 @@
 	    public String listaCursosUsuario(Model model) {
 	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	        String correoUsuarioActual = authentication.getName();
-	
+			
+			
+			
+			
 	        List<Curso> misCursos = cursoServicio.listarCursosPorProfesor(correoUsuarioActual);
+			
+			int totalVacantes = 0;
+			int cursosCompletos = 0;
+			for (Curso curso : misCursos) { totalVacantes += curso.getVacantes();}
+
+			for (Curso curso : misCursos) { 
+				if (curso.getVacantes() == 0){
+					cursosCompletos++;
+				}
+			}
+			
+			model.addAttribute("TotalVacantes", totalVacantes);
+			model.addAttribute("CursosCompletos", cursosCompletos);
 	        model.addAttribute("misCursos", misCursos);
-	
 	        return "listaCursosUsuario";
 	    }
 	    
