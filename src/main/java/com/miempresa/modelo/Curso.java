@@ -19,7 +19,7 @@ public class Curso {
     private int id;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "profesor", referencedColumnName = "nombres")
+	@JoinColumn(name = "profesor", referencedColumnName = "id", nullable = false)
 	private Usuario profesor;
 
     @Column(name = "nombre")

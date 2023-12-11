@@ -1,43 +1,76 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragmentos/header :: head"></head>
+<head th:replace="fragmentos/header :: head">
+	<title>Cursos</title>
+</head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
+    <!-- HEADER UNICO -->
 	<div th:insert="fragmentos/header :: menu"></div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3 bg-warning">
-				<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
-			</div>
-			<div class="col-md-9">
-				<h2>Selecciona tus cursos:</h2>
-				
-				<div th:if="${matriculaExitosa}" class="alert alert-success">
-					¡Matrícula exitosa! Se ha registrado correctamente.
+
+  	<!-- CONTENIDO DE PAGINA WEB -->
+	<main class="container flex-grow-1 pt-3">
+		<div class="mx-xl-5">
+			<!-- E L   U N I C O   N A V B A R -->
+			<div th:insert="fragmentos/navbars :: my-navbar-2"></div>
+			
+			<!-- T O D O   L O   Q U E   E S T A   D E N T R O   D E   A Q U I,  P U E D E   S E R   C A M B I A D O -->
+			<div class="container-fluid px-0 mb-3 ">
+				<div class="pt-4  display-5 fw-bolder">
+					Selecciona tus cursos
 				</div>
-				
-				<div th:if="${errorNoCursosSeleccionados}" class="alert alert-danger">
-					Por favor, selecciona al menos un curso antes de continuar.
+
+				<div class="my-3 rounded-4 border">
+					<div class="row">
+						<div class="col-md-12">
+							<div th:if="${matriculaExitosa}" class="alert alert-success">
+								¡Matrícula exitosa! Se ha registrado correctamente.
+							</div>
+							
+							<div th:if="${errorNoCursosSeleccionados}" class="alert alert-danger">
+								Por favor, selecciona al menos un curso antes de continuar.
+							</div>
+							
+							<form th:action="@{/procesarSeleccion}" method="post">
+								<table class="table">
+									<thead class="table-light">
+										<tr>
+											<th> </th>
+											<th>Nombre</th>
+											<th>Descripcion</th>
+											<th>Vacantes</th>
+											<th>Profesor</th>
+										</tr>
+										
+									</thead>
+									<tbody class="">
+										<tr th:each="curso : ${cursos}">
+											<td>
+												<input type="checkbox" th:name="cursosSeleccionados" th:value="${curso.id}" class="form-check form-check-input"/>
+											</td>
+											<td th:text="${curso.nombre}"></td>
+											<td th:text="${curso.descripcion}"></td>
+											<td th:text="${curso.vacantes}"></td>
+											<td th:text="${curso.profesor.nombres}"></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="text-center d-flex justify-content-center">
+									<button type="submit" class="btn btn-success">Seleccionar</button>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-				
-				<form th:action="@{/procesarSeleccion}" method="post">
-					<ul>
-						<li th:each="curso : ${cursos}">
-							<label>
-								<input type="checkbox" th:name="cursosSeleccionados" th:value="${curso.id}" />
-								<span th:text="${curso.nombre}"></span>
-								<span th:text="${curso.descripcion}"></span>
-								<span th:text="${curso.vacantes}"></span>
-								<span th:text="${curso.profesor.nombres}"></span>
-							</label>
-						</li>
-					</ul>
-					<button type="submit">Seleccionar</button>
-				</form>
+
+
 			</div>
 		</div>
-	</div>
-</body>
+	</main>
 
+
+	<div th:insert="fragmentos/footer :: footer"></div>
+	<div th:insert="fragmentos/header :: scripts"></div>
+    </body>
 </html>

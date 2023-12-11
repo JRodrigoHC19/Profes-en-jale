@@ -1,39 +1,75 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragmentos/header :: head"></head>
+<head th:replace="fragmentos/header :: head">
+	<title>Matricula-Curso-Usuario</title>
+</head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<div th:insert="fragmentos/header :: menu"></div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3 bg-warning">
-				<div th:insert="fragmentos/lado_izquierdo :: contenido_lado_izquierdo"></div>
-			</div>
-			<div class="col-md-9">
-				<h2>Detalle de Matrícula</h2>
-				<p>Código: <span th:text="${matricula.codigo}"></span></p>
-				<p>Costo Total: <span th:text="${matricula.costo_total}"></span></p>
-				<p>Fecha de Matrícula: <span th:text="${#dates.format(matricula.fec_matricula, 'dd-MM-yyyy HH:mm')}"></span></p>
-				<h3>Matrículas-Cursos Vinculadas</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Curso</th>
-							<th>Costo</th>
-							<!-- Otros encabezados de columnas según tus necesidades -->
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="matriculaCurso : ${matriculaCursos}">
-							<td th:text="${matriculaCurso.id}"></td>
-							<td th:text="${matriculaCurso.curso.nombre}"></td>
-							<td th:text="${matriculaCurso.costo}"></td>
-							<!-- Otros datos de columnas según tus necesidades -->
-						</tr>
-					</tbody>
-				</table>
-</body>
 
+	
+  	<!-- CONTENIDO DE PAGINA WEB -->
+	<main class="container flex-grow-1 pt-3">
+		<div class="mx-xl-5">
+			<!-- E L   U N I C O   N A V B A R -->
+			<div th:insert="fragmentos/navbars :: my-navbar-2"></div>
+			
+			<!-- T O D O   L O   Q U E   E S T A   D E N T R O   D E   A Q U I,  P U E D E   S E R   C A M B I A D O -->
+			<div class="pt-4  display-5 fw-bolder">
+				Detalle de  la Matrícula
+			</div>
+			<div class="container-fluid px-0 mb-3 ">
+					<div class="card">
+					<div class="card-header m-0 pb-0 pt-3 px-4">
+						<div class="hstack gap-1">
+							<div class="pb-2">
+								<strong th:text="${matricula.codigo}"></strong>
+							</div>
+							<div class="pb-2 ms-auto"></div>
+							<div class="vr mb-2"></div>
+							<div class="ps-2 pb-2">
+								Costo Total: S/.<span th:text="${matricula.costo_total}"></span>
+							</div>
+						</div>
+					</div>
+					<div class="card-body m-0 pb-0 pt-3 px-4">
+						<div class="hstack gap-1">
+							<div class="pb-2">
+								<h3>Matrículas-Cursos Vinculadas</h3>
+							</div>
+							<div class="pb-2 ms-auto"></div>
+							<div class="pb-2">
+								Fecha de Matrícula: <span th:text="${#dates.format(matricula.fec_matricula, 'dd/MM/yyyy HH:mm')}"></span>
+							</div>
+						</div>
+					<table class="table">
+						<thead class="table-light">
+							<tr>
+								<th>ID</th>
+								<th>Curso</th>
+								<th>Costo</th>
+								<!-- Otros encabezados de columnas según tus necesidades -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="matriculaCurso : ${matriculaCursos}">
+								<td th:text="${matriculaCurso.id}"></td>
+								<td th:text="${matriculaCurso.curso.nombre}"></td>
+								<td th:text="${matriculaCurso.costo}"></td>
+								<!-- Otros datos de columnas según tus necesidades -->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		</div>
+	</main>
+	
+	
+	<div th:insert="fragmentos/footer :: footer"></div>
+	<div th:insert="fragmentos/header :: scripts"></div>
+</body>
 </html>

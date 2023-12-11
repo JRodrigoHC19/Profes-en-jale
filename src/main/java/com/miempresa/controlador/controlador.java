@@ -119,7 +119,19 @@
 	    @GetMapping("/listaCursos")
 	    public String listaCursos(Model model) {
 	        List<Curso> cursos = cursoServicio.listarCursos();
-	        model.addAttribute("cursos", cursos);
+			
+			int totalVacantes = 0;
+			int cursosActivos = 0;
+			for (Curso curso : cursos) { totalVacantes += curso.getVacantes();}
+			for (Curso curso : cursos) { 
+				if (curso.getVacantes() > 0){
+					cursosActivos++;
+				}
+			}
+
+			model.addAttribute("CursosActivos", cursosActivos);
+			model.addAttribute("TotalVacantes", totalVacantes);
+			model.addAttribute("cursos", cursos);
 	        return "listaCursos";
 	    }
 	    
