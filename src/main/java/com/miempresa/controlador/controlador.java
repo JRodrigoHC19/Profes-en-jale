@@ -126,6 +126,7 @@
 	    public String listaCursos(Model model) {
 	        List<Curso> cursos = cursoServicio.listarCursos();
 			
+			// <- <- MODIFICACIÓN INICIO ->->
 			int totalVacantes = 0;
 			int cursosActivos = 0;
 			for (Curso curso : cursos) { totalVacantes += curso.getVacantes();}
@@ -137,6 +138,8 @@
 
 			model.addAttribute("CursosActivos", cursosActivos);
 			model.addAttribute("TotalVacantes", totalVacantes);
+			// <- <- MODIFICACIÓN FIN ->->
+
 			model.addAttribute("cursos", cursos);
 	        return "listaCursos";
 	    }
@@ -145,6 +148,7 @@
 		public String listaMatriculas(Model model) {
 			List<Matricula> matriculas = matriculaServicio.listar();
 			
+			// <- <- MODIFICACIÓN INICIO ->->
 			int costoFinal = 0;
 			Set<String> nombres = new HashSet<>();
 			
@@ -155,6 +159,8 @@
 			
 			model.addAttribute("CostoFinal", costoFinal);
 			model.addAttribute("AlumnoMatriculados", nombres.size());
+			// <- <- MODIFICACIÓN FIN ->->
+
 			model.addAttribute("matriculas", matriculas);
 			return "listaMatriculas";
 		}
@@ -165,11 +171,9 @@
 	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	        String correoUsuarioActual = authentication.getName();
 			
-			
-			
-			
 	        List<Curso> misCursos = cursoServicio.listarCursosPorProfesor(correoUsuarioActual);
 			
+			// <- <- MODIFICACIÓN INICIO ->->
 			int totalVacantes = 0;
 			int cursosCompletos = 0;
 			for (Curso curso : misCursos) { totalVacantes += curso.getVacantes();}
@@ -182,6 +186,8 @@
 			
 			model.addAttribute("TotalVacantes", totalVacantes);
 			model.addAttribute("CursosCompletos", cursosCompletos);
+			// <- <- MODIFICACIÓN FIN ->->
+
 	        model.addAttribute("misCursos", misCursos);
 	        return "listaCursosUsuario";
 	    }
@@ -193,6 +199,7 @@
 	
 	        List<Matricula> misMatriculas = matriculaServicio.listarMatriculasPorAlumno(correoUsuarioActual);
 
+			// <- <- MODIFICACIÓN INICIO ->->
 			int CostoFinal = 0;
 			
 			for (Matricula matricula : misMatriculas) {
@@ -200,8 +207,9 @@
 			}
 			
 			model.addAttribute("CostoFinal", CostoFinal);
+			// <- <- MODIFICACIÓN FIN ->->
+
 	        model.addAttribute("misMatriculas", misMatriculas);
-	
 	        return "listaMatriculasUsuario";
 	    }
 	    

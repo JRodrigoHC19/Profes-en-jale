@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="fragmentos/header :: head">
-	<title>Matrícula</title>
+<head>
+	<div th:replace="fragmentos/header :: head"></div>
+	<title>Detalles de la Matrícula</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -17,11 +17,12 @@
 			
 			<!-- T O D O   L O   Q U E   E S T A   D E N T R O   D E   A Q U I,  P U E D E   S E R   C A M B I A D O -->
 			<div class="container-fluid px-0 mb-3 ">
+
 				<div class="pt-4  display-5 fw-bolder">
 					Detalles de la Matrícula
 				</div>
 
-				<div class="my-3 rounded-4 border" style="height: 300px;">
+				<div class="my-3 rounded-4 border">
 					<ul>
 						<li th:each="curso : ${cursosSeleccionados}">
 							<span th:text="${curso.nombre}"></span> - <span th:text="${curso.costo}"></span>
@@ -34,9 +35,6 @@
 					</form>
 				</div>
 
-				<div class="my-3 rounded-4 border" style="height: 300px;">
-				RELLENA AQUÍ TU CODIGO
-				</div>
 			</div>
 
 		</div>
