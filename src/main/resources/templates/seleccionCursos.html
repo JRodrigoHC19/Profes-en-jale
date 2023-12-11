@@ -17,42 +17,60 @@
 			
 			<!-- T O D O   L O   Q U E   E S T A   D E N T R O   D E   A Q U I,  P U E D E   S E R   C A M B I A D O -->
 			<div class="container-fluid px-0 mb-3 ">
-				<div class="pt-4  display-5 fw-bolder">
-					Selecciona tus cursos
-				</div>
+				<form th:action="@{/procesarSeleccion}" method="post">
+					<div class="pt-4  display-5 fw-bolder d-flex justify-content-between">
+						<span>Selecciona tus cursos </span>
+						<button class="btn btn-success mt-3" type="submit">Concretar <i class="bi bi-cart2"></i></button>
+					</div>
 
-				<div class="my-3 rounded-4 border">
-					<div class="row">
-						<div class="col-md-12">
-							<div th:if="${matriculaExitosa}" class="alert alert-success">
-								¡Matrícula exitosa! Se ha registrado correctamente.
+					<div class="my-3 rounded-4 border">
+						<div class="row">
+							<div class="col-md-12">
+								<div th:if="${matriculaExitosa}" class="alert alert-success">
+									¡Matrícula exitosa! Se ha registrado correctamente.
+								</div>
+								
+								<div th:if="${errorNoCursosSeleccionados}" class="alert alert-danger">
+									Por favor, selecciona al menos un curso antes de continuar.
+								</div>
+								
+								
+									<div class="row">
+										<div class="col-sm-12 col-md-6 col-xl-6 col-xxl-4" th:each="curso : ${cursos}">
+											<div class="card mb-3">
+												<input type="checkbox" th:name="cursosSeleccionados" class="btn-check" th:id="'btn-check-'+${curso.id}" th:value="${curso.id}" autocomplete="off" aria-current="true"/>
+												<label class="fw-bolder card-header btn btn-outline-secondary rounded-0 rounded-top border-0" th:for="'btn-check-'+${curso.id}">
+														<div class="hstack gap-1">
+															<div class="pb-2"><strong><span th:text="${curso.nombre}" /></strong></div>
+															<div class="pb-2 ms-auto me-2"><span th:text="'S/.'+${curso.costo}" /></div>
+															<div class="vr mb-2"></div>
+															<div class="ps-2 pb-2 text-body-secondary"><i class="bi bi-check2-circle"></i></div>
+														</div>
+												</label>
+												<div class="row g-0">
+													<div class="col-sm-12 col-md-12 col-lg-5">
+														<img th:src="@{/img/curso.jpg}" height="100%" width="100%" alt="..." />
+													</div>
+													<div class="col-sm-12 col-md-12 col-lg-7">
+														<div class="card-body">
+															<h6 class="card-title">Profesor:</h6>
+															<p class="card-text"><span th:text="${curso.profesor.nombres}"></span></p>
+															<h6 class="card-title">Fecha de Inicio:</h6>
+															<p class="card-text"><span th:text="${curso.fec_ini}"></span></p>
+															<p class="card-text text-end mt-sm-2 mt-md-5"><small class="text-body-secondary"><span class="fw-bolder" th:text="${curso.vacantes}"></span> Vacantes Disponibles</small></p>
+															<p class="text-end m-0"><button type="button" class="btn btn-secondary m-0" data-bs-toggle="popover" data-bs-placement="right" data-bs-custom-class="custom-popover" data-bs-title="Descripción" th:data-bs-content="${curso.descripcion}">Detalles</button></p>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+
 							</div>
-							
-							<div th:if="${errorNoCursosSeleccionados}" class="alert alert-danger">
-								Por favor, selecciona al menos un curso antes de continuar.
-							</div>
-							
-							<form th:action="@{/procesarSeleccion}" method="post">
-								<ul>
-									<li th:each="curso : ${cursos}">
-										<label>
-											<input type="checkbox" th:name="cursosSeleccionados" th:value="${curso.id}" />
-											<span th:text="${curso.nombre}"></span>
-											<span th:text="${curso.descripcion}"></span>
-											<span th:text="${curso.vacantes}"></span>
-											<span th:text="${curso.profesor.nombres}"></span>
-										</label>
-									</li>
-								</ul>
-								<button type="submit">Seleccionar</button>
-							</form>
 						</div>
 					</div>
-				</div>
-
-				<div class="my-3 rounded-4 border" style="height: 300px;">
-				RELLENA AQUÍ TU CODIGO
-				</div>
+				</form>
 			</div>
 		</div>
 	</main>
@@ -60,5 +78,9 @@
 
 	<div th:insert="fragmentos/footer :: footer"></div>
 	<div th:insert="fragmentos/header :: scripts"></div>
+	<script>
+		const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+		const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+	</script>
     </body>
 </html>

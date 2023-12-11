@@ -1,29 +1,35 @@
 	package com.miempresa.controlador;
 	
+	import java.util.HashSet;
 	import java.util.List;
+	import java.util.Set;
 	import java.util.Optional;
-	
+
 	import org.springframework.beans.factory.annotation.Autowired;
+	
 	import org.springframework.security.core.Authentication;
 	import org.springframework.security.core.context.SecurityContextHolder;
-	import org.springframework.stereotype.Controller;
-	import org.springframework.ui.Model;
-	import org.springframework.validation.BindingResult;
+
 	import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.ModelAttribute;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
 	import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestParam;
+	import org.springframework.validation.BindingResult;
+	import org.springframework.stereotype.Controller;
+	import org.springframework.ui.Model;
+
 	import com.miempresa.modelo.Curso;
 	import com.miempresa.modelo.Matricula;
 	import com.miempresa.modelo.MatriculaCurso;
 	import com.miempresa.modelo.Usuario;
+
 	import com.miempresa.servicio.CursoServicio;
 	import com.miempresa.servicio.MatriculaCursoServicio;
 	import com.miempresa.servicio.MatriculaServicio;
 	import com.miempresa.servicio.UsuarioServicio;
-	
+
 	import jakarta.servlet.http.HttpServletRequest;
 	import jakarta.validation.Valid;
 	
@@ -136,11 +142,23 @@
 	    }
 	    
 	    @GetMapping("/listaMatriculas")
-	    public String listaMatriculas(Model model) {
-	        List<Matricula> matriculas = matriculaServicio.listar();
-	        model.addAttribute("matriculas", matriculas);
-	        return "listaMatriculas";
-	    }
+		public String listaMatriculas(Model model) {
+			List<Matricula> matriculas = matriculaServicio.listar();
+			
+			int costoFinal = 0;
+			Set<String> nombres = new HashSet<>();
+			
+			for (Matricula matricula : matriculas) {
+				costoFinal += matricula.getCosto_total();
+				nombres.add(matricula.getAlumno().getNombres());
+			}
+			
+			model.addAttribute("CostoFinal", costoFinal);
+			model.addAttribute("AlumnoMatriculados", nombres.size());
+			model.addAttribute("matriculas", matriculas);
+			return "listaMatriculas";
+		}
+
 	    
 	    @GetMapping("/listaCursosUsuario")
 	    public String listaCursosUsuario(Model model) {
@@ -174,6 +192,14 @@
 	        String correoUsuarioActual = authentication.getName();
 	
 	        List<Matricula> misMatriculas = matriculaServicio.listarMatriculasPorAlumno(correoUsuarioActual);
+
+			int CostoFinal = 0;
+			
+			for (Matricula matricula : misMatriculas) {
+				CostoFinal += matricula.getCosto_total();
+			}
+			
+			model.addAttribute("CostoFinal", CostoFinal);
 	        model.addAttribute("misMatriculas", misMatriculas);
 	
 	        return "listaMatriculasUsuario";
