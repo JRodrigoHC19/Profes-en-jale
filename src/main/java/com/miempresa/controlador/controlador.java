@@ -1,6 +1,8 @@
 	package com.miempresa.controlador;
 	
-	import java.util.HashSet;
+	import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 	import java.util.List;
 	import java.util.Set;
 	import java.util.Optional;
@@ -54,7 +56,38 @@
 	    private List<Curso> cursosSeleccionados;
 		
 		@GetMapping("/")
-	    public String index() {
+	    public String index(Model model) {
+			// <- <- MODIFICACIÓN INICIO ->->
+			List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+			List<Curso> cursos = cursoServicio.listarCursos();
+
+			List<Usuario> profesores = new ArrayList<>();
+			List<Curso> CursosDisponibles = new ArrayList<>();
+
+			for (Usuario user : usuarios){
+				if (user.getRol().equals("ALUMNO")){ continue; }
+				profesores.add(user);
+			}
+			for (Curso curso : cursos){
+				if (!curso.getVacantes().equals(0)){
+					if (curso.getFec_ini().compareTo(new Date()) >= 0 ){
+						CursosDisponibles.add(curso);
+					}
+				}
+			}
+
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        String correoUsuarioActual = authentication.getName();
+	        
+	        Optional<Usuario> usuarioActual = usuarioServicio.buscarPorCorreo(correoUsuarioActual);
+			
+	        usuarioActual.ifPresent(usuario -> model.addAttribute("MyUsuario", usuario));
+			model.addAttribute("TotalUsuarios", usuarios.size());
+			model.addAttribute("Profesores", profesores);
+			model.addAttribute("TotalCursosLastMonth", CursosDisponibles.size());
+			model.addAttribute("CursosLastMonth", CursosDisponibles);
+			// <- <- MODIFICACIÓN FIN ->->
+
 	        return "index";
 	    }
 		
@@ -149,7 +182,7 @@
 			List<Matricula> matriculas = matriculaServicio.listar();
 			
 			// <- <- MODIFICACIÓN INICIO ->->
-			int costoFinal = 0;
+			Double costoFinal = 0.0;
 			Set<String> nombres = new HashSet<>();
 			
 			for (Matricula matricula : matriculas) {
@@ -157,7 +190,12 @@
 				nombres.add(matricula.getAlumno().getNombres());
 			}
 			
-			model.addAttribute("CostoFinal", costoFinal);
+			if (costoFinal > 1000.0){
+				String costoFinal_v2 = String.valueOf(costoFinal / 1000) + " K";
+				model.addAttribute("CostoFinal", costoFinal_v2);
+			} else {
+				model.addAttribute("CostoFinal", costoFinal);
+			}
 			model.addAttribute("AlumnoMatriculados", nombres.size());
 			// <- <- MODIFICACIÓN FIN ->->
 
@@ -200,13 +238,18 @@
 	        List<Matricula> misMatriculas = matriculaServicio.listarMatriculasPorAlumno(correoUsuarioActual);
 
 			// <- <- MODIFICACIÓN INICIO ->->
-			int CostoFinal = 0;
+			Double CostoFinal = 0.0;
 			
 			for (Matricula matricula : misMatriculas) {
 				CostoFinal += matricula.getCosto_total();
 			}
-			
-			model.addAttribute("CostoFinal", CostoFinal);
+
+			if (CostoFinal > 1000.0){
+				String costoFinal_v2 = String.valueOf(CostoFinal / 1000) + " K";
+				model.addAttribute("CostoFinal", costoFinal_v2);
+			} else {
+				model.addAttribute("CostoFinal", CostoFinal);
+			}
 			// <- <- MODIFICACIÓN FIN ->->
 
 	        model.addAttribute("misMatriculas", misMatriculas);

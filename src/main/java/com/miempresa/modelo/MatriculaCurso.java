@@ -12,11 +12,11 @@ public class MatriculaCurso {
     private int id;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "matricula", referencedColumnName = "id")
+	@JoinColumn(name = "matricula", referencedColumnName = "codigo")
 	private Matricula matricula;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "curso", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "curso", referencedColumnName = "nombre")
 	private Curso curso;
 
     @Column(name = "costo")

@@ -3,6 +3,10 @@
 <head>
 	<div th:replace="fragmentos/header :: head"></div>
 	<title>Mis Matriculas</title>
+	    
+	<!-- DATABASES CUSTOM -->
+	<link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.8/datatables.min.css" rel="stylesheet">
+	<script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -26,7 +30,7 @@
 						<div class="my-2 p-3  border rounded-4  bg-light">
 							<div class="d-flex align-items-center">
 								<div class="icon-xl p-3 rounded-3  bg-secondary"><i class="bi bi-airplane-engines  px-3  custom-size-0"></i></div>
-								<div class="ms-3"><h2 th:text="${#lists.size(misMatriculas)}" /><span class="text-secondary  custom-size-1">Matriculas Concretadas</span></div>
+								<div class="ms-3"><h2 th:text="${#lists.size(misMatriculas)}" /><span class="text-secondary  custom-size-1">Matriculas Hechas</span></div>
 							</div>
 						</div>
 					</div>
@@ -61,7 +65,7 @@
 
 						<div class="my-3">
 							<div class="table-responsive rounded-4 border">
-								<table class="table">
+								<table class="table" id="example1">
 									<thead class="table-light">
 										<tr>
 											<th>ID</th>
@@ -127,5 +131,6 @@
 
 	<div th:insert="fragmentos/footer :: footer"></div>
 	<div th:insert="fragmentos/header :: scripts"></div>
+	<script> new DataTable('#example1'); </script>
     </body>
 </html>

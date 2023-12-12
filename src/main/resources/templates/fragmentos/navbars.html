@@ -15,7 +15,7 @@
 					<img th:src="@{/img/perfil.jpg}" width="150" height="150" class="rounded-circle">
 				</div>
 				<div class="col  ps-xs-4 ps-md-5  my-auto  h2">
-					Hi, usuario <strong>Jaime!</strong>
+					Bienvenido, <strong><span th:text="${MyUsuario.nombres}"/> <span th:text="${MyUsuario.apellidos}"/>!</strong>
 				</div>
 				<div class="col-auto  me-5">
 					<img class="imagencita-md" src="https://winblog.s3.amazonaws.com/blog/wp-content/uploads/2022/09/Conoce-las-plataformas-de-cursos-online-que-necesitas.png" height="150">

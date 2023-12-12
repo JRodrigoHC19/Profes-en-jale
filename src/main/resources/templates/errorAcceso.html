@@ -1,22 +1,20 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <title>Error</title>
-    <meta charset="UTF-8">
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
-    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="fragmentos/header :: head"></div>
+    <title>Page Not Authorized</title>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="text-center">
-                    <h1 class="display-4">Error de acceso</h1>
-                    <p class="lead">Lo sentimos, no tienes permisos para acceder a esta pagina.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="d-flex flex-column min-vh-100">
+    <div th:insert="fragmentos/header :: menu"></div>
+      	<!-- CONTENIDO DE PAGINA WEB -->
+	<main class="container flex-grow-1 pt-3">
+		<div class="mx-xl-5">
+			<div class="container-fluid px-0 mb-3">
+                <img width="100%" th:src= "@{/img/403.png}" />
+			</div>
+		</div>
+	</main>
+    <div th:insert="fragmentos/header :: scripts"></div>
 </body>
 </html>

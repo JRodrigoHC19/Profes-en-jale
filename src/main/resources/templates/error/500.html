@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:insert="fragmentos/header :: head"></div>
-    <title>Page Not Found</title>
+    <title>Internal Server Error</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div th:insert="fragmentos/header :: menu"></div>
@@ -11,7 +11,7 @@
 	<main class="container flex-grow-1 pt-3">
 		<div class="mx-xl-5">
 			<div class="container-fluid px-0 mb-3">
-                <img width="100%" th:src= "@{/img/404.png}" />
+                <img width="100%" th:src= "@{/img/500.jpg}" />
 			</div>
 		</div>
 	</main>

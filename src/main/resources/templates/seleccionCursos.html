@@ -1,19 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="fragmentos/header :: head">
-	<title>Cursos</title>
+<head>
+	<div th:replace="~{fragmentos/header :: head}"></div>
+	<title>Selección de Cursos</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <!-- HEADER UNICO -->
-	<div th:insert="fragmentos/header :: menu"></div>
+	<div th:insert="~{fragmentos/header :: menu}"></div>
 
   	<!-- CONTENIDO DE PAGINA WEB -->
 	<main class="container flex-grow-1 pt-3">
 		<div class="mx-xl-5">
 			<!-- E L   U N I C O   N A V B A R -->
-			<div th:insert="fragmentos/navbars :: my-navbar-2"></div>
+			<div th:insert="~{fragmentos/navbars :: my-navbar-2}"></div>
 			
 			<!-- T O D O   L O   Q U E   E S T A   D E N T R O   D E   A Q U I,  P U E D E   S E R   C A M B I A D O -->
 			<div class="container-fluid px-0 mb-3 ">

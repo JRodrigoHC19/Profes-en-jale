@@ -3,6 +3,10 @@
 <head>
 	<div th:replace="fragmentos/header :: head"></div>
 	<title>Lista de Usuarios</title>
+	
+	<!-- DATABASES CUSTOM -->
+	<link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.8/datatables.min.css" rel="stylesheet">
+	<script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -58,7 +62,7 @@
 
 						<div class="my-3">
 								<div class="table-responsive rounded-4 border">
-									<table class="table">
+									<table class="table" id="example1">
 										<thead class="table-light">
 											<tr>
 												<th>ID</th>
@@ -145,5 +149,6 @@
 
 	<div th:insert="fragmentos/footer :: footer"></div>
 	<div th:insert="fragmentos/header :: scripts"></div>
+	<script> new DataTable('#example1'); </script>
     </body>
 </html>

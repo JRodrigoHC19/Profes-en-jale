@@ -18,7 +18,7 @@ public class Matricula {
     private String codigo;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "alumno", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "alumno", referencedColumnName = "nombres")
     private Usuario alumno;
 
     @Column(name = "costo_total")
