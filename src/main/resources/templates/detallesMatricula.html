@@ -22,17 +22,40 @@
 					Detalles de la Matrícula
 				</div>
 
-				<div class="my-3 rounded-4 border">
-					<ul>
-						<li th:each="curso : ${cursosSeleccionados}">
-							<span th:text="${curso.nombre}"></span> - <span th:text="${curso.costo}"></span>
-						</li>
-					</ul>
-					<p>Total a pagar: <span th:text="${totalCosto}"></span></p>
-					<form th:action="@{/matricular}" method="post">
-						<a th:href="@{/seleccionCursos}" class="btn btn-link">Cancelar</a>
-						<button type="submit">Matricular</button>
-					</form>
+				<div class="my-3">
+					<div class="table-responsive rounded-4 border">
+						<table class="table">
+							<thead  class="table-light">
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Nombre del Curso</th>
+									<th scope="col">Profesor Encargado</th>
+									<th scope="col">Costo</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="curso : ${cursosSeleccionados}">
+									<th scope="row" th:text="${curso.id}"></th>
+									<td th:text="${curso.nombre}"></td>
+									<td th:text="${curso.profesor.nombres}"></td>
+									<td>S/. <span th:text="${curso.costo}"></span></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td class="text-end fw-bolder">Costo total</td>
+									
+									<td>S/. <span th:text="${totalCosto}"></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="container-fluid my-3 mx-0">
+						<form class="text-end" th:action="@{/matricular}" method="post">
+							<a th:href="@{/seleccionCursos}" class="btn btn-warning">Regresar</a>
+							<button type="submit" class="btn btn-success">Matricular</button>
+						</form>
+					</div>
 				</div>
 
 			</div>

@@ -1,83 +1,126 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
 
-<head th:fragment="head">
-	<title>Registro</title>
-	<meta charset="UTF-8">
-	<link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}" />
-	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registar Cuenta</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <meta name="theme-color" content="#712cf9">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
+
+    <!-- Custom styles for this template -->
 </head>
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
 
-<body>
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-md-8">
-				<div th:if="${param.errorCorreoDuplicado}" class="alert alert-danger">
-					El correo ya está registrado. Por favor, utiliza otro correo.
+    
+	<main class="m-5 w-100">
+		<div class="py-5 text-center">
+			<h1>Registrar Usuario</h1>
+		</div>
+		
+		<div class="mx-sm-0 mx-xl-3 mx-xxl-5 px-sm-0 px-xl-3 px-xxl-5">
+			<div class="mx-sm-0 mx-xl-3 mx-xxl-5 px-sm-0 px-xl-3 px-xxl-5">
+				<div class="mx-sm-0 mx-xl-3 mx-xxl-5 px-sm-0 px-xl-3 px-xxl-5">
+					<h4 class="mb-3">Por favor, rellene el formulario</h4>
+					<form class="needs-validation" th:action="@{/registro}" th:object="${usuario}" method="post">
+						<div th:if="${param.errorCorreoDuplicado}" class="alert alert-warning">
+							El correo ya está registrado. Por favor, utiliza otro correo.
+						</div>
+
+						<div class="row g-3">
+							<div class="col-md-12 col-lg-4">
+								<label for="dni" class="form-label">DNI:</label>
+								<input type="text" class="form-control" id="dni" th:field="*{dni}" required/>
+								<div th:errors="*{dni}" class="text-danger">Error en el campo DNI</div>
+							</div>
+
+							<div class="col-md-12 col-lg-4">
+								<label for="nombres" class="form-label">Nombres:</label>
+								<input type="text" class="form-control" id="nombres" th:field="*{nombres}" required />
+								<div th:errors="*{nombres}" class="text-danger">Error en el campo Nombres</div>
+							</div>
+
+							<div class="col-md-12 col-lg-4">
+								<label for="apellidos" class="form-label">Apellidos:</label>
+								<input type="text" class="form-control" id="apellidos" th:field="*{apellidos}" required />
+								<div th:errors="*{apellidos}" class="text-danger">Error en el campo Apellidos</div>
+							</div>
+				
+							<div class="col-md-12 col-lg-6">
+								<label for="correo" class="form-label">Correo:</label>
+								<input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="you@example.com" />
+								<div th:errors="*{correo}" class="text-danger">Error en el campo Correo</div>
+							</div>
+
+							<div class="col-md-12 col-lg-6">
+								<label for="contrasenia" class="form-label">Contraseña:</label>
+ 								<div class="input-group has-validation">
+									<span class="input-group-text">@</span>
+									<input type="password" class="form-control" id="contrasenia" th:field="*{contrasenia}" />
+								</div>
+								<div th:errors="*{contrasenia}" class="text-danger">Error en el campo Contraseña</div>
+							</div>
+
+							<div class="col-sm-12 col-md-8 col-lg-9">
+								<label for="direccion" class="form-label">Dirección:</label>
+								<input type="text" class="form-control" id="direccion" th:field="*{direccion}" placeholder="1234 Main St" required />
+								<div th:errors="*{direccion}" class="text-danger">Error en el campo Dirección</div>
+							</div>
+
+							<div class="col-sm-12 col-md-4 col-lg-3">
+								<label for="genero" class="form-label">Género:</label>
+								<select class="form-select" id="genero" th:field="*{genero}" >
+									<option value="">Seleccionar</option>
+									<option value="MASCULINO">Masculino</option>
+									<option value="FEMENINO">Femenino</option>
+								</select>
+								<div th:errors="*{genero}" class="text-danger">Error en el campo Género</div>
+							</div>
+
+							<div class="col-sm-12 col-md-6">
+								<label for="fecha_nac" class="form-label">Fecha de Nacimiento:</label>
+								<input type="date" class="form-control" id="fecha_nac" th:field="*{fecha_nac}" />
+								<div th:errors="*{fecha_nac}" class="text-danger">Error en el campo Fecha de Nacimiento</div>
+							</div>
+
+							<div class="col-sm-12 col-md-6">
+								<label for="rol" class="form-label">Rol:</label>
+								<select class="form-select" id="rol" th:field="*{rol}" >
+									<option value="">Seleccionar</option>
+									<option value="ALUMNO">Alumno</option>
+									<option value="PROFESOR">Profesor</option>
+								</select>
+								<p th:errors="*{rol}" class="text-danger">Error en el campo Rol</p>
+							</div>
+						</div>
+				
+						<hr class="my-4">
+				
+						<button class="w-100 btn btn-primary btn-lg" type="submit">Registrarme ahora</button>
+					</form>
+					<br>
+					<p class="text-end">
+						<a th:href="@{/login}" class="btn btn-warning">Regresar</a>
+					</p>
 				</div>
-
-				<h2 class="text-center mb-4">Registro de Usuario</h2>
-				<form th:action="@{/registro}" th:object="${usuario}" method="post">
-					<div class="mb-3">
-						<label for="nombres" class="form-label">Nombres:</label>
-						<input type="text" class="form-control" id="nombres" th:field="*{nombres}" />
-						<p th:errors="*{nombres}" class="text-danger">Error en el campo Nombres</p>
-					</div>
-					<div class="mb-3">
-						<label for="apellidos" class="form-label">Apellidos:</label>
-						<input type="text" class="form-control" id="apellidos" th:field="*{apellidos}" />
-						<p th:errors="*{apellidos}" class="text-danger">Error en el campo Apellidos</p>
-					</div>
-					<div class="mb-3">
-						<label for="dni" class="form-label">DNI:</label>
-						<input type="text" class="form-control" id="dni" th:field="*{dni}" />
-						<p th:errors="*{dni}" class="text-danger">Error en el campo DNI</p>
-					</div>
-					<div class="mb-3">
-						<label for="correo" class="form-label">Correo:</label>
-						<input type="email" class="form-control" id="correo" th:field="*{correo}" />
-						<p th:errors="*{correo}" class="text-danger">Error en el campo Correo</p>
-					</div>
-					<div class="mb-3">
-						<label for="contrasenia" class="form-label">Contraseña:</label>
-						<input type="password" class="form-control" id="contrasenia" th:field="*{contrasenia}" />
-						<p th:errors="*{contrasenia}" class="text-danger">Error en el campo Contraseña</p>
-					</div>
-					<div class="mb-3">
-						<label for="genero" class="form-label">Género:</label>
-						<select class="form-select" id="genero" th:field="*{genero}" >
-							<option value="">Seleccionar</option>
-							<option value="MASCULINO">Masculino</option>
-							<option value="FEMENINO">Femenino</option>
-						</select>
-						<p th:errors="*{genero}" class="text-danger">Error en el campo Género</p>
-					</div>
-					<div class="mb-3">
-						<label for="direccion" class="form-label">Dirección:</label>
-						<input type="text" class="form-control" id="direccion" th:field="*{direccion}" />
-						<p th:errors="*{direccion}" class="text-danger">Error en el campo Dirección</p>
-					</div>
-					<div class="mb-3">
-						<label for="fecha_nac" class="form-label">Fecha de Nacimiento:</label>
-						<input type="date" class="form-control" id="fecha_nac" th:field="*{fecha_nac}" />
-						<p th:errors="*{fecha_nac}" class="text-danger">Error en el campo Fecha de Nacimiento</p>
-					</div>
-					<div class="mb-3">
-						<label for="rol" class="form-label">Rol:</label>
-						<select class="form-select" id="rol" th:field="*{rol}" >
-							<option value="">Seleccionar</option>
-							<option value="ALUMNO">Alumno</option>
-							<option value="PROFESOR">Profesor</option>
-						</select>
-						<p th:errors="*{rol}" class="text-danger">Error en el campo Rol</p>
-					</div>
-					<a th:href="@{/login}" class="btn btn-link">Cancelar</a>
-					<button type="submit" class="btn btn-primary">Registrarse</button>
-				</form>
 			</div>
 		</div>
-	</div>
-</body>
 
+	</main>
+	
+	<script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script>
+		hoy = new Date();
+		fecha_now = hoy.getFullYear() + '-' +hoy.getMonth() + '-' + hoy.getDate();
+		document.getElementById('fecha_nac').max = fecha_now;
+	</script>
+</body>
 </html>

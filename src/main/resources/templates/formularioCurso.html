@@ -21,49 +21,51 @@
 					Formulario de Registro de Curso
 				</div>
 
-				<div class="my-3 rounded-4 border">
-					<form th:action="@{/guardarCurso}" method="post" th:object="${curso}">
-						<input type="hidden" th:field="*{id}" />
-	
-						<div class="mb-3">
-							<label for="nombre" class="form-label">Nombre del Curso:</label>
-							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
-							<p th:errors="*{nombre}" class="text-danger">Error en el campo Nombre del Curso</p>
-						</div>
-	
-						<div class="mb-3">
-							<label for="descripcion" class="form-label">Descripción:</label>
-							<textarea class="form-control" id="descripcion" th:field="*{descripcion}"></textarea>
-							<p th:errors="*{descripcion}" class="text-danger">Error en el campo Descripción</p>
-						</div>
-	
-						<div class="mb-3">
-							<label for="fec_ini" class="form-label">Fecha de Inicio:</label>
-							<input type="date" class="form-control" id="fec_ini" th:field="*{fec_ini}" />
-							<p th:errors="*{fec_ini}" class="text-danger">Error en el campo Fecha de Inicio</p>
-						</div>
-	
-						<div class="mb-3">
-							<label for="fec_fin" class="form-label">Fecha de Fin:</label>
-							<input type="date" class="form-control" id="fec_fin" th:field="*{fec_fin}" />
-							<p th:errors="*{fec_fin}" class="text-danger">Error en el campo Fecha de Fin</p>
-						</div>
-	
-	
-						<div class="mb-3">
-							<label for="costo" class="form-label">Costo:</label>
-							<input type="number" class="form-control" id="costo" th:field="*{costo}" />
-							<p th:errors="*{costo}" class="text-danger">Error en el campo Costo</p>
-						</div>
-	
-						<div class="mb-3">
-							<label for="vacantes" class="form-label">Vacantes:</label>
-							<input type="number" class="form-control" id="vacantes" th:field="*{vacantes}" />
-							<p th:errors="*{vacantes}" class="text-danger">Error en el campo Vacantes</p>
-						</div>
-	
-						<button type="submit" class="btn btn-primary">Guardar Curso</button>
-					</form>
+				<div class="my-3 ">
+					<div class="mx-5 px-5">
+						<form class="mx-5 px-5" th:action="@{/guardarCurso}" method="post" th:object="${curso}">
+							<input type="hidden" th:field="*{id}" />
+							
+							<h4>Por favor, rellene este formulario</h4>
+							<div class="mb-3">
+								<label for="nombre" class="form-label">Nombre del Curso:</label>
+								<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
+								<p th:errors="*{nombre}" class="text-danger">Error en el campo Nombre del Curso</p>
+							</div>
+		
+							<div class="mb-3">
+								<label for="descripcion" class="form-label">Descripción:</label>
+								<textarea class="form-control" id="descripcion" th:field="*{descripcion}"></textarea>
+								<p th:errors="*{descripcion}" class="text-danger">Error en el campo Descripción</p>
+							</div>
+		
+							<div class="mb-3">
+								<label for="fec_ini" class="form-label">Fecha de Inicio:</label>
+								<input type="date" class="form-control" id="fec_ini" th:field="*{fec_ini}" />
+								<p th:errors="*{fec_ini}" class="text-danger">Error en el campo Fecha de Inicio</p>
+							</div>
+		
+							<div class="mb-3">
+								<label for="fec_fin" class="form-label">Fecha de Fin:</label>
+								<input type="date" class="form-control" id="fec_fin" th:field="*{fec_fin}" />
+								<p th:errors="*{fec_fin}" class="text-danger">Error en el campo Fecha de Fin</p>
+							</div>
+
+							<div class="mb-3">
+								<label for="costo" class="form-label">Costo:</label>
+								<input type="number" class="form-control" id="costo" th:field="*{costo}" min="0" max="999999" step="0.01" />
+								<p th:errors="*{costo}" class="text-danger">Error en el campo Costo</p>
+							</div>
+		
+							<div class="mb-3">
+								<label for="vacantes" class="form-label">Vacantes:</label>
+								<input type="number" class="form-control" id="vacantes" th:field="*{vacantes}" min="0" max="999999" step="1" />
+								<p th:errors="*{vacantes}" class="text-danger">Error en el campo Vacantes</p>
+							</div>
+		
+							<button type="submit" class="btn btn-primary">Guardar Curso</button>
+						</form>
+					</div>
 				</div>
 
 			</div>
@@ -74,5 +76,16 @@
 
 	<div th:insert="fragmentos/footer :: footer"></div>
 	<div th:insert="fragmentos/header :: scripts"></div>
-    </body>
+	<script>
+		d = new Date();
+		f_ini = document.getElementById('fec_ini');
+		f_fin = document.getElementById('fec_fin');
+
+		f_ini.min = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate() ;
+		f_ini.addEventListener("input", function(event) {
+			f_fin.value = '';
+			f_fin.min = event.target.value;
+		});
+	</script>
+</body>
 </html>
